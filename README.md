@@ -1,4 +1,4 @@
-#-------PROJECT OVERVIEW-------------
+# PROJECT OVERVIEW
 
 This project implements a Python-based market-making algorithm for the Quant Insider Market Making Challenge. The goal is to simulate a market maker that:
 Quotes bid and ask prices dynamically around the mid-price
