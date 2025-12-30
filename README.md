@@ -1,5 +1,3 @@
-Quant Insider Market Making Challenge – Submission
-
 #-------PROJECT OVERVIEW-------------
 
 This project implements a Python-based market-making algorithm for the Quant Insider Market Making Challenge. The goal is to simulate a market maker that:
@@ -8,37 +6,47 @@ Adapts to order book imbalance and inventory risk
 Tracks PnL and inventory over time
 Compares baseline vs adaptive strategies
 The project includes a simulator for local testing and optional integration with Nubra’s UAT environment.
+# Quant Insider Market Making Challenge
 
-#-------STRATEGIES IMPLEMENTED--------
-1. Baseline Strategy
+## Overview
+This repository contains my submission for the **Quant Insider Market Making Challenge**.
 
-Fixed spread around mid-price
-Passive quoting (no inventory or imbalance adjustment)
-Simple control strategy to serve as a benchmark
+The project implements a Python-based market-making algorithm that:
+- Consumes order book data (simulated or via Nubra UAT)
+- Quotes bid and ask prices around the mid-price
+- Manages inventory risk
+- Tracks PnL over time
+- Compares a baseline strategy with an adaptive strategy
 
-2. Adaptive Strategy
+---
 
-Computes mid-price from order book
-Measures order book imbalance: the difference between buy and sell volumes at top levels
-Implements adaptive inventory skew:
+## Strategies Implemented
 
-If inventory is positive → bid is lowered, ask is raised
-If inventory is negative → bid is raised, ask is lowered
+### 1. Baseline Strategy
+- Quotes a fixed spread around the mid-price
+- No inventory or order book imbalance adjustment
+- Serves as a benchmark strategy
 
-#----NUBRA SDK USAGE---------
+### 2. Adaptive Strategy
+- Computes mid-price from best bid and ask
+- Uses order book imbalance as a signal
+- Applies adaptive inventory skew:
+  - Positive inventory → less aggressive buying, more aggressive selling
+  - Negative inventory → more aggressive buying, less aggressive selling
+- Enforces an inventory cap to manage risk
 
-While the simulation can run without Nubra, the project is ready to use Nubra’s UAT environment:
-Authentication handled via nubra_python_sdk
-Optional WebSocket client in data_sources/nubra_ws.py
-Fetches real-time market data and order book updates
-Can switch between simulator and Nubra live feed using:
+---
 
-USE_NUBRA = True  # in market_maker.py
+## Nubra SDK Usage
+The project is designed to work with **Nubra’s UAT environment** using `nubra_python_sdk`.
 
+- Authentication handled via Nubra SDK
+- Real-time market data supported through WebSocket logic in `data_sources/nubra_ws.py`
+- Strategy can switch between simulator and Nubra feed using:
 
-Note: For competition submission, simulator runs are sufficient. Nubra integration is optional but supported.
-Dynamically adjusts bid/ask quotes to manage inventory risk
-Aims for higher PnL with controlled inventory drift
+```python
+USE_NUBRA = False  # Set True to use Nubra
+
 
 #----HOW TO RUN---------
 
