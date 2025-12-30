@@ -46,35 +46,34 @@ The project is designed to work with **Nubra’s UAT environment** using `nubra_
 
 ```python
 USE_NUBRA = False  # Set True to use Nubra
-
-
-#----HOW TO RUN---------
+```
+###----HOW TO RUN---------
 
 1.Run market making simulation:
-
+```python
 python market_maker.py
-
+```
 Runs both baseline and adaptive strategies
 
 2.Generates CSV logs in logs/:
-
+```python
 logs/mm_logs_baseline.csv
 logs/mm_logs_adaptive.csv
 
-
+```
 3.Generate plots for comparison:
-
+```python
 python plot_results.py
-
+```
 4.Generates comparison plots in plots/:
-
+```python
 plots/pnl_comparison.png
 plots/inventory_comparison.png
-
-#---LOGS-------
+```
+###---LOGS-------
 
 CSV logs include the following columns:
-
+```python
 Column	  |Description
 timestamp	|Tick timestamp
 best_bid	|Best bid in order book
@@ -86,8 +85,8 @@ imbalance	|Order book imbalance
 inventory	|Current net position
 cash	    |Cash balance from fills
 pnl	      |Mark-to-market PnL (cash + inventory × mid)
-
-#-----PLOTS-----
+```
+###PLOTS
 
 1.PnL Comparison
 pnl_comparison.png shows Baseline vs Adaptive PnL over time
@@ -97,7 +96,7 @@ Adaptive PnL is generally higher and smoother
 inventory_comparison.png shows Baseline vs Adaptive inventory drift
 Adaptive inventory is kept closer to zero, reducing risk
 
-#------OBSERVATIONS------
+###------OBSERVATIONS------
 
 Baseline Strategy:
 
@@ -113,7 +112,8 @@ PnL is more consistent and higher on average
 
 This demonstrates that adaptive inventory skew + order book responsiveness improves market-making performance.
 
-#------FOLDER STRUCTURE------
+###------FOLDER STRUCTURE------
+```python
 quant-mm/
 ├── market_maker.py
 ├── plot_results.py
@@ -133,8 +133,8 @@ quant-mm/
     ├── __init__.py
     ├── simulator.py
     └── nubra_ws.py
-
-#-----SUBMISSION NOTES--------
+```
+###-----SUBMISSION NOTES--------
 Both baseline and adaptive runs are included
 Logs and plots are ready for review
 Repo is ready to be submitted as per competition guidelines
